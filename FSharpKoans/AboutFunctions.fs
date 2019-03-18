@@ -146,7 +146,7 @@ module ``03: Putting the Function into Functional Programming`` =
     let ``20 Functions have types`` () =
         let a x y = x + "cabbage" + y
         let b r = 50.0 / r
-        a |> should be ofType<string -> string>
+        a |> should be ofType<string -> string -> string>
         b |> should be ofType<float -> float>
 
 
@@ -224,9 +224,9 @@ module ``03: Putting the Function into Functional Programming`` =
     let ``24 The output type of one pipe must be the input type to the next`` () =
         let a x = x * 2.5
         let b x = x = 7.5
-        a |> should be ofType<FILL_ME_IN>
-        b |> should be ofType<FILL_ME_IN>
-        __ |> __ |> __ |> should equal true
+        a |> should be ofType<double -> double>
+        b |> should be ofType<double -> bool>
+        7.5 / 2.5 |> a |> b |> should equal true
 
     (*
         The backwards-pipe operator takes:
@@ -247,7 +247,7 @@ module ``03: Putting the Function into Functional Programming`` =
         let a x =
             x = 4
         not (a 4) |> should equal false
-        (__ __ a 4) |> should equal false // <-- put <| in one of the spaces to fill in
+        (not <| a 4) |> should equal false // <-- put <| in one of the spaces to fill in
 
     (*
         The compose operator takes:
@@ -272,7 +272,7 @@ module ``03: Putting the Function into Functional Programming`` =
         let j = double >> add5
         let k = double >> double >> double
         let l = j >> i
-        i 3 |> should equal __
-        j 3 |> should equal __
-        k 3 |> should equal __
-        l 3 |> should equal __
+        i 3 |> should equal 16
+        j 3 |> should equal 11
+        k 3 |> should equal 24
+        l 3 |> should equal 32
