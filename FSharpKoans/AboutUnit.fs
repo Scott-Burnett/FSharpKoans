@@ -11,9 +11,9 @@ module ``15: Advanced techniques`` =
     let ``02 Unit, as an input, conveys no data`` () = 
         let sayHello () = "hello"
         let result = sayHello ()
-        sayHello |> should be ofType<FILL_ME_IN>
-        sayHello () |> should be ofType<FILL_ME_IN>
-        sayHello () |> should equal __
+        sayHello |> should be ofType<unit -> string>
+        sayHello () |> should be ofType<string>
+        sayHello () |> should equal "hello"
 
 (*
     When we develop real systems, we often run into problems
